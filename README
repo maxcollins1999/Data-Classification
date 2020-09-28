@@ -1,0 +1,33 @@
+## Synopsis
+
+Assignment Code for Data Mining (COMP3009)
+
+## Contents
+README - README file for assignment code.
+
+classifier.pkl - Serialised classifiers generated from 'COMP3009 Assignment.ipynb' for 
+		 use in run.py.
+
+'COMP3009 Assignment.ipynb' - Jupyter Notebook containing exploratory analysis and model
+			      development.
+
+
+Figures - Folder containing graphs and other figures generated during analysis.
+
+data2020.student.csv - CSV file of data for use in analysis and prediction.
+
+format_tools.py - Python file containing formatting tools for use in analysis and 
+		  prediction 
+
+run.py - Python file that predicts the unknown class labels.
+
+test.csv - A csv file used for sanity checks in 'COMP3009 Assignment.ipynb' and run.py.
+
+## Dependencies
+
+'COMP3009 Assignment.ipynb' <- format_tools.py, data2020.student.csv, test.csv
+
+run.py <- format_tools.py, data2020.student.csv, test.csv, classifiers.pkl
+
+## Version information
+28/09/2020 - Initial version of assignment code.

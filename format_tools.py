@@ -49,12 +49,12 @@ class raw_formatter():
         Xy = Xy_data.copy()
         #Formatting data types
         Xy = self.__format_dtypes(Xy)
+        #Removing duplicate data points
+        Xy = Xy.drop_duplicates()
         #Imputing
         self.num_imputer = SimpleImputer(missing_values=np.nan, strategy='mean').fit(Xy[num_cols])
         self.cat_imputer = SimpleImputer(missing_values=np.nan, strategy='constant', fill_value='Unknown').fit(Xy[cat_cols])
         Xy = self.__impute_data(Xy)
-        #Removing duplicate data points
-        Xy = Xy.drop_duplicates()
         #Encoding
         self.encoder = OneHotEncoder().fit(Xy[self.cat_cols].astype(str))
         Xy = self.__encode(Xy)
