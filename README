@@ -23,6 +23,13 @@ run.py - Python file that predicts the unknown class labels.
 
 test.csv - A csv file used for sanity checks in 'COMP3009 Assignment.ipynb' and run.py.
 
+train_test_data - A folder containing the .arff files of the train and test data post 
+		  encoding used during development of the models.
+
+k_fold_validation_data - A folder containing the train and test samples generated for 
+			 each iteration of 10 fold validation. 
+
+
 ## Dependencies
 
 'COMP3009 Assignment.ipynb' <- format_tools.py, data2020.student.csv, test.csv
