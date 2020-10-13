@@ -116,6 +116,6 @@ print(preds['Predict 1'].value_counts())
 print('\nPREDICTED 2 INFO')
 print(preds['Predict 2'].value_counts())
 
-preds.to_csv('predict.sample.csv', index=False)
+preds.to_csv('predict.csv', index=False)
 
 ################################################################################

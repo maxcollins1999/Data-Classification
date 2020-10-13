@@ -29,6 +29,7 @@ train_test_data - A folder containing the .arff files of the train and test data
 k_fold_validation_data - A folder containing the train and test samples generated for 
 			 each iteration of 10 fold validation. 
 
+predict.csv - A csv file containing the predicted classes for the data
 
 ## Dependencies
 
