@@ -35,7 +35,7 @@ import pickle as pkl
 
 ################################################################################
 
-cat_cols = ['C2','C3','C4','C5','C7','C9','C10','C11','C12','C14','C16','C18','C19','C23','C24','C25','C27','C31','C32']
+cat_cols = ['C2','C3','C4','C5','C7','C9','C10','C11','C12','C14','C18','C19','C23','C24','C25','C31','C32']
 num_cols = ['C6', 'C8', 'C13', 'C20', 'C26']
 
 #Preparing training and test data
@@ -61,15 +61,15 @@ y_test = test_data['Class']
 with open('classifiers.pkl', 'rb') as fstrm:
     clst = pkl.load(fstrm)
 
-cvt = clst[0]
-cnn = clst[1]
+clf = clst[0]
+cvt = clst[1]
 
 #Calculating test errors
 vt_err = sum(cvt.predict(x_test) == y_test)/len(y_test)
-nn_err = sum(cnn.predict(x_test) == y_test)/len(y_test)
+lf_err = sum(clf.predict(x_test) == y_test)/len(y_test)
 
 #Checking models have built correctly
-if vt_err - .76 < 1e-2 and nn_err - .79 < 1e-2:
+if vt_err - .76 < 1e-2 and lf_err - .76 < 1e-2:
     print('SUCCESS: MODELS CORRECTLY BUILT')
 else:
     print('WARNING: MODELS MAY NOT BE CORRECTLY BUILT')
@@ -82,20 +82,20 @@ to_pred['Class'] = to_pred['Class'].astype('category')
 to_pred = rformat.transform(to_pred)
 to_pred = to_pred.drop('Class',axis=1)
 
-pred1 = cnn.predict(to_pred)
+pred1 = clf.predict(to_pred)
 pred2 = cvt.predict(to_pred)
 
-check1 = [1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0,
- 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0,
- 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1,
- 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0,
- 1, 1, 0, 0]
+check1 = [0,1,1,0,0,0,1,1,1,1,0,0,1,0,0,1,1,1,1,1,1,1,0,0,
+ 1,1,0,0,1,1,1,1,0,1,1,1,1,0,1,1,0,1,1,0,0,1,1,0,
+ 0,0,1,0,0,0,0,1,0,1,1,1,1,0,0,0,0,1,1,1,0,0,0,1,
+ 1,0,1,1,0,1,0,0,0,0,0,0,1,1,0,0,1,1,1,1,0,0,0,0,
+ 1,1,0,0]
 
-check2 = [0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0,
- 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0,
- 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1,
- 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0,
- 1, 1, 0, 0]
+check2 = [0,1,1,0,0,0,1,1,1,1,0,0,1,0,0,1,1,1,1,1,1,1,0,0,
+ 1,1,0,0,1,1,1,0,0,1,1,1,1,0,1,1,0,1,1,0,0,1,1,0,
+ 0,0,1,0,0,0,0,1,0,1,1,1,1,0,0,0,0,1,1,1,0,0,0,1,
+ 1,0,1,1,0,1,0,0,0,0,0,0,1,1,0,0,1,1,1,1,0,0,0,0,
+ 1,1,0,0]
 
 if (pred1 == check1).all():
     print('SUCCESS: PREDICTED VALUES 1 ARE THE SAME AS NOTEBOOK')
