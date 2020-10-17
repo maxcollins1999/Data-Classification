@@ -61,15 +61,15 @@ y_test = test_data['Class']
 with open('classifiers.pkl', 'rb') as fstrm:
     clst = pkl.load(fstrm)
 
-clf = clst[0]
+cad = clst[0]
 cvt = clst[1]
 
 #Calculating test errors
 vt_err = sum(cvt.predict(x_test) == y_test)/len(y_test)
-lf_err = sum(clf.predict(x_test) == y_test)/len(y_test)
+ad_err = sum(cad.predict(x_test) == y_test)/len(y_test)
 
 #Checking models have built correctly
-if vt_err - .76 < 1e-2 and lf_err - .76 < 1e-2:
+if vt_err - .76 < 1e-2 and ad_err - .77 < 1e-2:
     print('SUCCESS: MODELS CORRECTLY BUILT')
 else:
     print('WARNING: MODELS MAY NOT BE CORRECTLY BUILT')
@@ -82,14 +82,14 @@ to_pred['Class'] = to_pred['Class'].astype('category')
 to_pred = rformat.transform(to_pred)
 to_pred = to_pred.drop('Class',axis=1)
 
-pred1 = clf.predict(to_pred)
+pred1 = cad.predict(to_pred)
 pred2 = cvt.predict(to_pred)
 
 check1 = [0,1,1,0,0,0,1,1,1,1,0,0,1,0,0,1,1,1,1,1,1,1,0,0,
- 1,1,0,0,1,1,1,1,0,1,1,1,1,0,1,1,0,1,1,0,0,1,1,0,
+ 1,1,0,0,1,1,1,0,0,1,1,1,1,0,1,1,0,1,1,0,1,1,1,0,
  0,0,1,0,0,0,0,1,0,1,1,1,1,0,0,0,0,1,1,1,0,0,0,1,
- 1,0,1,1,0,1,0,0,0,0,0,0,1,1,0,0,1,1,1,1,0,0,0,0,
- 1,1,0,0]
+ 1,0,1,0,0,1,0,0,0,0,0,0,1,1,0,0,1,1,1,1,0,0,0,0,
+ 1,1,0,0.]
 
 check2 = [0,1,1,0,0,0,1,1,1,1,0,0,1,0,0,1,1,1,1,1,1,1,0,0,
  1,1,0,0,1,1,1,0,0,1,1,1,1,0,1,1,0,1,1,0,0,1,1,0,
