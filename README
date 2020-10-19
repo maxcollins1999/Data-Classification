@@ -26,8 +26,8 @@ test.csv - A csv file used for sanity checks in 'COMP3009 Assignment.ipynb' and 
 train_test_data - A folder containing the .arff files of the train and test data post 
 		  encoding used during development of the models.
 
-k_fold_validation_data - A folder containing the train and test samples generated for 
-			 each iteration of 10 fold validation. 
+k_fold_validation_data - A folder containing the .arff files of the train and test 
+			 samples generated for each iteration of 10 fold validation. 
 
 declaration_of_originality - A .pdf file containing the declaration of originality for the
 			     assignment
